@@ -1,0 +1,52 @@
+<?php
+session_start();
+error_reporting(0);
+include '../config/koneksi.php';
+if (@$_POST['edit']) {
+
+	$id_user = mysqli_real_escape_string($conn, $_POST['id_user']);
+	$nm_user = mysqli_real_escape_string($conn, $_POST['nm_user']);
+	$lb_user = mysqli_real_escape_string($conn, $_POST['lb_user']);
+	$us_user = mysqli_real_escape_string($conn, $_POST['us_user']);
+	$ps_user = mysqli_real_escape_string($conn, sha1($_POST['ps_user']));
+	$rl_user = mysqli_real_escape_string($conn, $_POST['rl_user']);
+
+	if (empty($_POST['ps_user'])) {
+
+		$kosong = mysqli_query($conn, "UPDATE tb_user SET 
+		nm_user = '".$nm_user."',
+		lb_user = '".$lb_user."',
+		us_user = '".$us_user."',
+		rl_user = '".$rl_user."'
+		WHERE id_user = '".$id_user."'
+		");
+
+		if ($kosong) {
+			$_SESSION['pesan_user_edit'] = 'Data user diubah..';
+			echo "<script>window.location='pg_user'</script>";
+		}else{
+			$_SESSION['pesan_user_gagal'] = 'Gagal ubah user..';
+			echo "<script>window.location='pg_user'</script>";
+		}
+	}else{
+
+		$tidakkosong = mysqli_query($conn, "UPDATE tb_user SET 
+		nm_user = '".$nm_user."',
+		lb_user = '".$lb_user."',
+		us_user = '".$us_user."',
+		ps_user = '".$ps_user."',
+		rl_user = '".$rl_user."'
+		WHERE id_user = '".$id_user."'
+		");
+
+		if ($tidakkosong) {
+			$_SESSION['pesan_user_edit'] = 'Data user diubah..';
+			echo "<script>window.location='pg_user'</script>";
+		}else{
+			$_SESSION['pesan_user_gagal'] = 'Gagal ubah user..';
+			echo "<script>window.location='pg_user'</script>";
+		}
+	}
+}
+
+?>
