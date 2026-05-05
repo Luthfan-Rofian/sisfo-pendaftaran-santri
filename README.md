@@ -73,7 +73,8 @@ Proyek ini dikembangkan untuk mendukung digitalisasi sistem pendidikan di lingku
 
 Jika Anda ingin mendukung pengembangan proyek ini:
 
-👉 **Dukung di Saweria**
+👉 **Dukung di Saweria**  
+https://saweria.co/Luthfanrofian
 
 ---
 
